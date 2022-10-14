@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CRM.Common.Wrappers", "CRM.Common.Wrappers\CRM.Common.Wrappers.shproj", "{8145E690-0DD6-4DB5-A27E-25EEA43067FD}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CRM.Common.Connection", "CRM.Common.Connection\CRM.Common.Connection.shproj", "{7F14AEEE-40EA-47E4-8A6F-C8156604A08A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B96E6106-9073-42DD-98D5-5FD6D1883224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginAndWf", "PluginAndWf\PluginAndWf.csproj", "{459D3BD7-6D7B-451D-8C59-F8BC8146EE3F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomPrograms", "CustomPrograms\CustomPrograms.csproj", "{A80B9CAC-B842-415A-9C0A-327C71758B5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{459D3BD7-6D7B-451D-8C59-F8BC8146EE3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{459D3BD7-6D7B-451D-8C59-F8BC8146EE3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{459D3BD7-6D7B-451D-8C59-F8BC8146EE3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{459D3BD7-6D7B-451D-8C59-F8BC8146EE3F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8145E690-0DD6-4DB5-A27E-25EEA43067FD} = {B96E6106-9073-42DD-98D5-5FD6D1883224}
+		{7F14AEEE-40EA-47E4-8A6F-C8156604A08A} = {B96E6106-9073-42DD-98D5-5FD6D1883224}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56738484-3469-4264-BE4A-7419F59DA4D9}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CRM.Common.Wrappers\CRM.Common.Wrappers.projitems*{459d3bd7-6d7b-451d-8c59-f8bc8146ee3f}*SharedItemsImports = 4
+		CRM.Common.Connection\CRM.Common.Connection.projitems*{7f14aeee-40ea-47e4-8a6f-c8156604a08a}*SharedItemsImports = 13
+		CRM.Common.Wrappers\CRM.Common.Wrappers.projitems*{8145e690-0dd6-4db5-a27e-25eea43067fd}*SharedItemsImports = 13
+		CRM.Common.Connection\CRM.Common.Connection.projitems*{a80b9cac-b842-415a-9c0a-327c71758b5b}*SharedItemsImports = 4
+	EndGlobalSection
+EndGlobal
