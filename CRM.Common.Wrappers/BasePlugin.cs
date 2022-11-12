@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.ServiceModel;
+using System.Collections.Generic;
 
 namespace CRM.Common.Wrappers
 {
@@ -213,7 +214,7 @@ namespace CRM.Common.Wrappers
                 {
                     // Iterate over all of the expected registered events to ensure that the plugin
                     // has been invoked by an expected event
-                    var entityActions =
+                    IEnumerable<Action<LocalPluginContext>> entityActions =
                         (from a in RegisteredEvents
                          where (
                             (int)a.Stage == (int)localContext.Stage &&

@@ -11,8 +11,11 @@ namespace PluginAndWf.Plugins
     {
         public ContactEntityCustom() : base()
         {
+            RegisteredEvents().Add(new PluginEvent()
+            { PluginAction., EntityName = "Contact", Stage = BasePlugin.eStage.PreOperation, Mode = BasePlugin.eMode.Synchronous, MessageName = "Create"});
+
             RegisteredEvents().Add(new PluginEvent() 
-            { EntityName = "Contact", Stage = BasePlugin.eStage.PreOperation, Mode = BasePlugin.eMode.Synchronous, MessageName = "Create", });
+            { EntityName = "Contact", Stage = BasePlugin.eStage.PreOperation, Mode = BasePlugin.eMode.Synchronous, MessageName = "Update", });
         }
 
         private void UpdateFieldCustom(LocalPluginContext localContext)

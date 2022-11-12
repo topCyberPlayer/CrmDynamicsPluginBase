@@ -7,6 +7,7 @@ namespace PluginAndWf.Plugins
     {
         public ContactEntity() : base()
         {
+            //Устанавливаем параметры при которых должен вызываться плагин (item)
             RegisteredEvents.Add(new PluginEvent()
             { EntityName = "Contact", Stage = eStage.PreOperation, MessageName = eMessageName.Update, Mode = eMode.Synchronous, PluginAction = UpdateField });
         }

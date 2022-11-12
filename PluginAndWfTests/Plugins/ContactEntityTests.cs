@@ -9,40 +9,30 @@ namespace PluginAndWf.Plugins.Tests
     [TestClass()]
     public class ContactEntityTests
     {
-        private readonly IOrganizationService service;
-
-        public ContactEntityTests()
-        {
-            service = CrmConnection.GetCrmServiceClient(CrmConnection.UrlCrm.CrmTest);
-        }
-
-
         [TestMethod()]
         public void ContactEntityTest()
         {
-            XrmRealContext realContext = new XrmRealContext(service);
+            XrmFakedContext xrmContext = new XrmFakedContext();
+            xrmContext.UsePipelineSimulation = true;
 
-            QueryExpression quContact = new QueryExpression()
+            Entity entityTarget = new Entity("contact")
             {
-                EntityName = "Contact",
-                ColumnSet = new ColumnSet("lastname", "firstname"),
-                TopCount = 1
+                Id = new System.Guid(),
             };
-
-            Entity entityTarget = service.RetrieveMultiple(quContact).Entities[0];
 
             ParameterCollection inputParameters = new ParameterCollection
             {
                 { "Target", entityTarget }
             };
 
-            XrmFakedPluginExecutionContext fakedPluginContext = realContext.GetDefaultPluginContext();
+            //Устнавливаем параметры для context
+            XrmFakedPluginExecutionContext fakedPluginContext = xrmContext.GetDefaultPluginContext();
             fakedPluginContext.MessageName = "Update";
             fakedPluginContext.Mode = (int)ProcessingStepMode.Synchronous;
             fakedPluginContext.Stage = (int)ProcessingStepStage.Preoperation;
             fakedPluginContext.InputParameters = inputParameters;
 
-            realContext.ExecutePluginWith<ContactEntity>(fakedPluginContext);
+            xrmContext.ExecutePluginWith<ContactEntityCustom>(fakedPluginContext);
         }
     }
 }
