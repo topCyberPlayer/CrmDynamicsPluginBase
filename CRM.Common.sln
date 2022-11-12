@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginAndWf", "PluginAndWf\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomPrograms", "CustomPrograms\CustomPrograms.csproj", "{A80B9CAC-B842-415A-9C0A-327C71758B5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginAndWfTests", "PluginAndWfTests\PluginAndWfTests.csproj", "{8969445D-6F23-4FAC-8AC8-BE53E5A2CBC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A80B9CAC-B842-415A-9C0A-327C71758B5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8969445D-6F23-4FAC-8AC8-BE53E5A2CBC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8969445D-6F23-4FAC-8AC8-BE53E5A2CBC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8969445D-6F23-4FAC-8AC8-BE53E5A2CBC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8969445D-6F23-4FAC-8AC8-BE53E5A2CBC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
