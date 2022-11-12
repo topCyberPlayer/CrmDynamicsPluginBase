@@ -171,6 +171,7 @@
       <Name>PluginAndWf</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\CRM.Common.Connection\CRM.Common.Connection.projitems" Label="Shared" />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
