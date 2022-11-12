@@ -22,11 +22,14 @@ namespace CustomPrograms
         }
         internal Entity GetRandomRecord()
         {
-            string entityName = "account";
-            Guid entityid = new Guid("");
-            ColumnSet columns = new ColumnSet("name");
+            QueryExpression qeAccount = new QueryExpression()
+            {
+                EntityName = "account",
+                ColumnSet = new ColumnSet("name"),
+                TopCount = 1
+            };
 
-            Entity entityAccount = service.Retrieve(entityName, entityid, columns);
+            Entity entityAccount = service.RetrieveMultiple(qeAccount)?.Entities[0];
 
             return entityAccount;
         }
