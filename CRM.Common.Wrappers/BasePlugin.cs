@@ -27,17 +27,23 @@ namespace CRM.Common.Wrappers
         protected class LocalPluginContext : IDisposable
         {
             internal IServiceProvider _ServiceProvider { get; private set; }
+            /// <summary>The IPluginExecutionContext provides access to the context for the event that executed the plugin</summary>
+            internal IPluginExecutionContext _Context { get; private set; }
             /// <summary>The ITracingService enables writing to the tracing log</summary>
             internal ITracingService _TracingService { get; private set; }
             /// <summary>The IOrganizationServiceFactory interface provides access to a service variable that implements the IOrganizationService interface</summary>
             internal IOrganizationServiceFactory _ServiceFactory { get; private set; }
             /// <summary>The IOrganizationService interface which provides the methods you will use to interact with the service to create the task</summary>
             internal IOrganizationService _Service { get; private set; }
-            /// <summary>The IPluginExecutionContext provides access to the context for the event that executed the plugin</summary>
-            internal IPluginExecutionContext _Context { get; private set; }
             /// <summary>You can write LINQ queries against Microsoft Dynamics 365 data</summary>
             internal OrganizationServiceContext _CrmContext { get; private set; }
-          
+
+            internal eStage Stage { get { return (eStage)this._Context.Stage; } }
+            internal eMode Mode { get { return (eMode)this._Context.Mode; } }
+            internal int Depth { get { return this._Context.Depth; } }
+            internal string MessageName { get { return this._Context.MessageName; } }
+            internal string EntityName { get { return this._Context.PrimaryEntityName; } }
+
             internal LocalPluginContext(IServiceProvider serviceProvider)
             {
                 if (serviceProvider == null)
@@ -61,10 +67,6 @@ namespace CRM.Common.Wrappers
                 this._CrmContext = new OrganizationServiceContext(this._Service);
             }
 
-            internal eStage Stage { get { return (eStage)this._Context.Stage; } }
-            internal eMode Mode { get { return (eMode)this._Context.Mode; } }
-            internal int Depth { get { return this._Context.Depth; } }
-            internal string MessageName { get { return this._Context.MessageName; } }
             /// <summary>
             /// Returns image by name for the pipeline execution
             /// </summary>
@@ -107,6 +109,7 @@ namespace CRM.Common.Wrappers
                         return this._Context.InputParameters ["Target"] as EntityReference;
                     return null;
             }   
+            
             internal void Trace(string message)
             {
                 if (string.IsNullOrWhiteSpace(message) || this._TracingService == null) return;
@@ -122,11 +125,13 @@ namespace CRM.Common.Wrappers
                         this._Context.InitiatingUserId);
                 }
             }
+            
             public void Dispose()
             {
                 if (this._CrmContext != null)
                     this._CrmContext.Dispose();
             }
+            
             private M GetEntityAsType<M>(Entity entity) where M : Entity
             {
                 if (typeof(M) == entity.GetType())
@@ -211,10 +216,10 @@ namespace CRM.Common.Wrappers
                     var entityActions =
                         (from a in RegisteredEvents
                          where (
-                            (int)a.Stage == localContext._Context.Stage &&
-                            (int)a.Mode == localContext._Context.Mode &&
-                             (string.IsNullOrWhiteSpace(a.MessageName) ? true : a.MessageName.ToLowerInvariant() == localContext._Context.MessageName.ToLowerInvariant()) &&
-                             (string.IsNullOrWhiteSpace(a.EntityName) ? true : a.EntityName.ToLowerInvariant() == localContext._Context.PrimaryEntityName.ToLowerInvariant())
+                            (int)a.Stage == (int)localContext.Stage &&
+                            (int)a.Mode == (int)localContext.Mode &&
+                             (string.IsNullOrWhiteSpace(a.MessageName) ? true : a.MessageName.ToLowerInvariant() == localContext.MessageName.ToLowerInvariant()) &&
+                             (string.IsNullOrWhiteSpace(a.EntityName) ? true : a.EntityName.ToLowerInvariant() == localContext.EntityName.ToLowerInvariant())
                          )
                          select a.PluginAction);
 
@@ -226,8 +231,8 @@ namespace CRM.Common.Wrappers
                                 CultureInfo.InvariantCulture,
                                 "{0} is firing for Entity: {1}, Message: {2}, Method: {3}",
                                 this.GetType().ToString(),
-                                localContext._Context.PrimaryEntityName,
-                                localContext._Context.MessageName,
+                                localContext.EntityName,
+                                localContext.MessageName,
                                 entityAction.Method.Name));
 
                             entityAction.Invoke(localContext);
