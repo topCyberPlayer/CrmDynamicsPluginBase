@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)BasePlugin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)BaseWorkflow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BasePluginCustom.cs" />
   </ItemGroup>
 </Project>
